@@ -135,7 +135,7 @@ bool sendData() {
 
     if (report) {
       digitalWrite(STATLED, LOW);
-      Serial.print(F("Transmission successful! "));          // payload was delivered
+      Serial.println(F("Transmission successful! "));          // payload was delivered
       // Serial.print(F(" us. Sent: "));                      // DEBUG ONLY
       // Serial.println(payload);                               // print payload sent 
       return(true);

@@ -14,7 +14,7 @@
 #include "RF24.h"
 #include <Servo.h>
 
-#define STATLED 9 // LED pin #
+#define STATLED 2 // LED pin #
 #define CE_PIN 6 // Chip Enable pin
 #define CSN_PIN 5 // Chip Select Not pin
 #define RECEIVER false // The role of this device
@@ -64,9 +64,6 @@ void setup() {
     while (1) {} // hold in infinite loop
   }
 
-  // print example's introductory prompt
-  Serial.println(F("RF24/examples/GettingStarted"));
-
   // // To set the radioNumber via the Serial monitor on startup
   // Serial.println(F("Which radio is this? Enter '0' or '1'. Defaults to '0'"));
   // while (!Serial.available()) {
@@ -111,7 +108,7 @@ void setup() {
 
 void loop() {
   receiveData();
-
+  steer(payload.potR);
 } // loop
 
 bool receiveData() {
@@ -147,6 +144,6 @@ void throttle(int val) {
 }
 
 void steer(int val) {
-  val = map(val, 0, 1023, 0, 180); // map(input, adcLow, adcHigh, 0 degrees, 180 degrees) NOTE: will need tweaking for precise values
+  val = map(val, 0, 1023, 0, 18); // map(input, adcLow, adcHigh, 0 degrees, 180 degrees) NOTE: will need tweaking for precise values
   myservo.write(val);
 }
